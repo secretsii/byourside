@@ -697,6 +697,7 @@ I don’t know how things will unfold from here, but today, in this moment, I’
                 
                 createHeart();
                 
+                                
                 setTimeout(() => {
                     const typingIndicator = document.createElement('div');
                     typingIndicator.className = 'chat-message received';
@@ -708,3 +709,50 @@ I don’t know how things will unfold from here, but today, in this moment, I’
                     
                     setTimeout(() => {
                         typingIndicator.remove();
+                        const replies = [
+                            "I love you too!", "i love youu", 
+                            "i want to kiss you", "pacar paling keren akuu",
+                            "me and you forever and always", "im so lucky to have you"
+                        ];
+                        const replyElement = document.createElement('div');
+                        replyElement.className = 'chat-message received';
+                        replyElement.innerHTML = `<div>${replies[Math.floor(Math.random() * replies.length)]}</div><div class="message-time">${timeString}</div>`;
+                        document.getElementById('chat-messages').appendChild(replyElement);
+                        
+                        if (Math.random() > 0.5) {
+                            setTimeout(() => {
+                                const heartElement = document.createElement('div');
+                                heartElement.className = 'chat-message received';
+                                heartElement.innerHTML = `<div style="font-size:1.3rem;">❤️</div>`;
+                                heartElement.style.background = 'transparent';
+                                heartElement.style.padding = '5px 12px';
+                                document.getElementById('chat-messages').appendChild(heartElement);
+                            }, 500);
+                        }
+                    }, 1500 + Math.random() * 1000);
+                }, 800 + Math.random() * 1000);
+            }
+        }
+
+        // Typing dots animation
+        const style = document.createElement('style');
+        style.textContent = `
+            .typing-dot {
+                height: 7px;
+                width: 7px;
+                background-color: #ff5c8d;
+                border-radius: 50%;
+                display: inline-block;
+                margin: 0 2px;
+                animation: typingAnimation 1.4s infinite ease-in-out;
+            }
+            @keyframes typingAnimation {
+                0%, 60%, 100% { transform: translateY(0); }
+                30% { transform: translateY(-6px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+
